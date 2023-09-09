@@ -91,7 +91,7 @@ function increment(product) {
 function decrement(product) {
     if (products[product] && products[product].quantity > 0) {
         products[product].quantity -= 1;
-        saveState()
+        saveState();
         updateDisplay();
     }
 }
