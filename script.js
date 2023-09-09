@@ -43,6 +43,19 @@ const cityPrices = {
         milk: 4
     }
 };
+function saveState() {
+    localStorage.setItem('gameState', JSON.stringify(gameState));
+}
+function loadState() {
+    const savedState = localStorage.getItem('gameState');
+    if (savedState) {
+        gameState = JSON.parse(savedState);
+    }
+}
+function resetGame() {
+    localStorage.removeItem('gameState');
+    location.reload(); // this will reload the page and start fresh
+}
 
 function updateDisplay() {
     for (let product in products) {
@@ -89,6 +102,7 @@ function buy(product) {
             products[product].purchased += products[product].quantity;
             gameState.money -= totalPrice;  // deducting the total price from user's money
             products[product].quantity = 0;
+            saveState();
             updateDisplay();
         } else {
             alert(`You don't have enough money to buy ${product}!`);
@@ -104,6 +118,7 @@ function sell(product) {
         
         products[product].purchased -= 1;
         gameState.money += sellingPrice; // adding the product's price to user's money for the sold item
+        saveState();
         updateDisplay();
     } else {
         alert("You don't have any to sell!");
@@ -211,6 +226,7 @@ document.querySelectorAll(".navbar a").forEach(link => {
 
 // Initialize Game
 document.addEventListener("DOMContentLoaded", function() {
+    loadState();
     updateDisplay();
     showWelcomeModal();
 });
