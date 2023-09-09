@@ -83,6 +83,7 @@ function getCurrentCityPrices(product) {
 function increment(product) {
     if (products[product]) {
         products[product].quantity += 1;
+        saveState();
         updateDisplay();
     }
 }
@@ -90,6 +91,7 @@ function increment(product) {
 function decrement(product) {
     if (products[product] && products[product].quantity > 0) {
         products[product].quantity -= 1;
+        saveState()
         updateDisplay();
     }
 }
@@ -134,6 +136,7 @@ function deposit() {
     if (gameState.money >= amount && amount > 0) {
         gameState.money -= amount;
         gameState.bankBalance += amount;
+        saveState();
         updateDisplay();
     } else {
         alert("Not enough money or invalid amount.");
@@ -144,6 +147,7 @@ function withdraw() {
     if (gameState.bankBalance >= amount && amount > 0) {
         gameState.bankBalance -= amount;
         gameState.money += amount;
+        saveState();
         updateDisplay();
     } else {
         alert("Not enough balance or invalid amount.");
@@ -156,6 +160,7 @@ function borrow() {
         if (gameState.loanBalance === 0) {
             gameState.loanBalance += amount;
             gameState.money += amount;
+            saveState();
             updateDisplay();
         } else {
             alert("You already have an outstanding loan.");
@@ -171,6 +176,7 @@ function payment() {
             if (gameState.money >= amount) {
                 gameState.loanBalance -= amount;
                 gameState.money -= amount;
+                saveState();
                 updateDisplay();
             } else {
                 alert("Not enough money to make the payment.");
@@ -198,6 +204,7 @@ function changeCity(cityName) {
         gameState.currentCity = cityName;
         document.getElementById('city-image').src = cities[cityName].imgSrc;
         document.getElementById('city-name').innerText = cityName;
+        saveState();
         updateDisplay();
     } else {
         alert(`Not enough fuel to travel to ${cityName}.`);
