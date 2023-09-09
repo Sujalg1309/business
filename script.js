@@ -19,28 +19,28 @@ let products = {
 // Prices for each product in each city
 const cityPrices = {
     "New York": {
-        smartphone: 1000,
-        laptop: 1500,
-        jeans: 50,
-        shirt: 30,
-        bread: 3,
-        milk: 2
+        smartphone: 10000,
+        laptop: 15000,
+        jeans: 500,
+        shirt: 300,
+        bread: 30,
+        milk: 20
     },
     "Los Angeles": {
-        smartphone: 950,
-        laptop: 1400,
-        jeans: 60,
-        shirt: 35,
-        bread: 4,
-        milk: 3
+        smartphone: 95000,
+        laptop: 140000,
+        jeans: 6000,
+        shirt: 3500,
+        bread: 80,
+        milk: 40
     },
     "San Francisco": {
-        smartphone: 1050,
+        smartphone: 1000,
         laptop: 1550,
-        jeans: 65,
-        shirt: 40,
-        bread: 5,
-        milk: 4
+        jeans: 650,
+        shirt: 400,
+        bread: 50,
+        milk: 50
     }
 };
 function saveState() {
