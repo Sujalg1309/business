@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Business Tycoon</title>
+        <link rel="shortcut icon" href="business.jpg" type="image/x-icon">
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div id="offlineIndicator" style="display: none;">
+            You are offline.
+        </div>
+        
+        <nav class="navbar">
+            <a href="#home" data-target="home">
+            <i class="material-icons">home</i>
+            Home
+            </a>
+            <a href="#Products" data-target="Products">
+            <i class="material-icons">shopping_cart</i>
+            Products
+            </a>
+            <a href="#travel" data-target="travel">
+            <i class="material-icons">flight</i>
+            Travel
+            </a>
+        </nav>
+      
+        <section class="top-section">
+            <h1>Business Tycoon</h1>
+            <div class="top-info">
+                <div class="money-info">
+                    <span class="label">Money:</span>
+                    <span class="value" id="money">$20,000</span>
+                </div>
+                <div class="fuel-info">
+                    <span class="label">Fuel:</span>
+                    <span class="value" id="fuel">50</span>
+                </div>
+                <div class="city-info">
+                    <span class="label">Current City:</span>
+                    <span class="value" id="current-city">New York</span>
+                </div>
+            </div>
+        </section>
+        <section id="home">
+            <section class="main-section">
+                <div id="city-display">
+                    <img id="city-image" src="New Yerk.jpg" alt="City Image">
+                    <h2 id="city-name">New York</h2>
+                </div>
+                <!-- Banking Section -->
+                <section class="property-section banking">
+                    <h3><i class="material-icons">account_balance</i> Banking</h3>
+                    <div class="property-content">
+                        <input type="number" id="bankingAmount" placeholder="Enter Amount">
+                        <br><br>
+                        <button onclick="deposit()">Deposit</button>
+                        <button onclick="withdraw()">Withdraw</button>
+                        <div id="bankBalance">Balance: $10,000</div>
+                        <!-- Starting bank balance display -->
+                    </div>
+                </section>
+                <!-- Loans Section -->
+                <section class="property-section loans">
+                    <h3><i class="material-icons">attach_money</i> Loans</h3>
+                    <div class="property-content">
+                        <input type="number" id="loanAmount" placeholder="Enter Amount">
+                        <br><br>
+                        <button onclick="borrow()">Borrow</button>
+                        <button onclick="payment()">Payment</button>
+                        <div id="loan-display">Loan: $0</div>
+                    </div>
+                </section>
+            
+            </section>
+        </section>
+
+        <section id="Products">
+            <div class="category" id="apparel">
+                <h3>Apparel</h3>
+                <ul>
+                    <li>
+                        <span>Jeans - $<span id="jeans-price"></span></span>
+                        <button onclick="increment('jeans')">+</button>
+                        <span class="quantity-display" id="jeans-quantity">0</span>
+                        <button onclick="decrement('jeans')">-</button>
+                        <br>
+                        <span class="purchase-display" id="jeans-purchased">Bought: 0</span>
+                        <button onclick="buy('jeans')">Buy</button>
+                        <button onclick="sell('jeans')">Sell</button>
+                    </li>
+                    <li>
+                        <span>Shirt - $<span id="shirt-price"></span></span>
+                        <button onclick="increment('shirt')">+</button>
+                        <span class="quantity-display" id="shirt-quantity">0</span>
+                        <button onclick="decrement('shirt')">-</button>
+                        <br>
+                        <span class="purchase-display" id="shirt-purchased">Bought: 0</span>
+                        <button onclick="buy('shirt')">Buy</button>
+                        <button onclick="sell('shirt')">Sell</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="category" id="groceries">
+                <h3>Groceries</h3>
+                <ul>
+                    <li>
+                        <span>Bread - $<span id="bread-price"></span></span>
+                        <button onclick="increment('bread')">+</button>
+                        <span class="quantity-display" id="bread-quantity">0</span>
+                        <button onclick="decrement('bread')">-</button>
+                        <br>
+                        <span class="purchase-display" id="bread-purchased">Bought: 0</span>
+                        <button onclick="buy('bread')">Buy</button>
+                        <button onclick="sell('bread')">Sell</button>
+                    </li>
+                    <li>
+                        <span>Milk - $<span id="milk-price"></span></span>
+                        <button onclick="increment('milk')">+</button>
+                        <span class="quantity-display" id="milk-quantity">0</span>
+                        <button onclick="decrement('milk')">-</button>
+                        <br>
+                        <span class="purchase-display" id="milk-purchased">Bought: 0</span>
+                        <button onclick="buy('milk')">Buy</button>
+                        <button onclick="sell('milk')">Sell</button>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        
+        
+        <!-- Travel Section -->
+        <section id="travel">
+            <h2><i class="material-icons">flight</i> Choose your destination</h2>
+            <div id="city-choices">
+                <button onclick="changeCity('New York')">New York</button>
+                <button onclick="changeCity('Los Angeles')">Los Angeles</button>
+                <button onclick="changeCity('San Francisco')">San Francisco</button>
+            </div>
+            <div id="city-details"></div>
+        </section>
+        <footer id="footer">
+            <p>&copy; 2023 Business Tycoon</p>
+            <a href="https://instagram.com/_.sujal._512" class="instagram-link">
+            <i class="material-icons">camera_alt</i>
+            Instagram
+            </a>
+        </footer>
+        <div id="desktopError" style="display: none;">
+            This game is playable on phones only.
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>

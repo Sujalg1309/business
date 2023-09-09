@@ -1,0 +1,298 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+:root {
+    --primary: #6200EA;
+    --primary-variant: #3700B3;
+    --secondary: #03DAC6;
+    --background: #121212;
+    --surface: #1f1f1f;
+    --error: #B00020;
+    --on-primary: #FFFFFF;
+    --on-secondary: #000000;
+    --on-background: #e0e0e0;
+    --on-surface: #e0e0e0;
+    --on-error: #FFFFFF;
+}
+.top-section,#Products,#travel,#footer{
+    margin: 10px;
+}
+body {
+    font-family: 'Ubuntu', sans-serif;
+    background-color: var(--background);
+    color: var(--on-background);
+    margin: 0;
+    padding: 0;
+    padding-bottom: 60px;
+    transition: background-color 0.3s ease;
+}
+.navbar {
+    background-color: var(--surface);
+    color: var(--on-surface);
+    padding: 8px 0px; /* Adjusted padding */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.08); /* Lighter shadow for sleek look */
+    position: fixed;
+    bottom: 0;
+    z-index: 1000;
+    width: 100%;
+    border-top-left-radius: 5px; /* Reduced border-radius */
+    border-top-right-radius: 5px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: var(--on-primary);
+    margin: 0 12px; /* Adjusted margin */
+    font-size: 1.5vh;
+    font-weight: 600; /* Bolder font for readability */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 8px;
+    border-radius: 8px;
+    transition: background-color 0.25s ease, transform 0.2s ease; /* Faster transition */
+}
+
+.navbar a:hover {
+    background-color: rgba(55, 0, 179, 0.2); /* Slight opacity for hover */
+    transform: scale(1.03); /* Subtle transform scale */
+}
+
+.material-icons {
+    vertical-align: middle;
+    font-size: calc(14px + 0.9vw); /* Adjusted font-size */
+    margin-right: 8px;
+    transition: color 0.3s ease;
+}
+
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
+}
+.property-section, .inventory {
+    background-color: var(--background);
+    border: 1px solid var(--surface);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.property-section:hover, .inventory:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
+
+.property .price {
+    color: #4CAF50;
+}
+
+#city-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+#city-display:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+#city-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+#city-image:hover {
+    transform: scale(1.05);
+}
+
+#city-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--on-background);
+}
+
+.button, #Products button, #city-choices button {
+    margin: 5px;
+    padding: 10px 15px;
+    background-color: var(--primary);
+    color: var(--on-primary);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover, #Products button:hover, #city-choices button:hover {
+    background-color: var(--primary-variant);
+    transform: translateY(-5px);
+}
+
+/* Responsive Styles */
+
+@media (min-width: 768px) and (max-width: 1024px) { 
+    #desktopError {
+        background-color: var(--error);  // Red background for emphasis
+        color: var(--on-error);
+        text-align: center;
+        padding: 20px;
+        font-size: 20px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1010;  // Make sure it displays on top of other content
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    
+    body *:not(#desktopError) {
+        display: none;
+    }
+}
+
+@media (min-width: 1024px) {
+    #desktopError {
+        background-color: var(--error);  // Red background for emphasis
+        color: var(--on-error);
+        text-align: center;
+        padding: 20px;
+        font-size: 20px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1010;  // Make sure it displays on top of other content
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+
+    body *:not(#desktopError) {
+        display: none;
+    }
+}
+
+.navbar a {
+    margin: 0 25px;
+    font-size: 18px;
+}
+
+
+#city-choices button {
+    background-color: var(--primary);
+    color: var(--on-primary);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#city-choices button:hover {
+    background-color: var(--primary-variant);
+}
+/* Webkit browsers */
+::-webkit-scrollbar {
+    width: 10px;
+}
+ 
+::-webkit-scrollbar-track {
+    background-color: var(--background);
+}
+ 
+::-webkit-scrollbar-thumb {
+    background-color: var(--primary-variant);
+    border-radius: 5px;
+}
+ 
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--primary);
+}
+
+.instagram-link {
+    display: flex;
+    align-items: center;
+    background-color: #4b4e55;  /* Instagram color */
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.instagram-link:hover {
+    background-color: #C1274D;  /* Darker Instagram color for hover effect */
+}
+
+.material-icons {
+    margin-right: 8px;
+}
+#offlineIndicator {
+    background-color: var(--error); /* Using the error color for emphasis */
+    color: var(--on-error);
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    size: 100vh;
+    width: 100%;
+    z-index: 1010; /* Higher than your navbar, so it shows on top */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+}
+/* Style for the input */
+#loanAmount,#bankingAmount {
+    padding: 10px;
+    border: 2px solid var(--primary-variant);
+    border-radius: 5px;
+    outline: none; /* Removes the browser default focus outline */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    margin-right: 10px; /* Space between input and buttons */
+    width: 150px; /* Setting a default width */
+    font-size: 16px;
+}
+
+#loanAmount:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 10px rgba(98, 0, 234, 0.3); /* Slight glow effect */
+}
+
+/* Styles for buttons */
+button {
+    padding: 10px 15px;
+    background-color: var(--primary);
+    color: var(--on-primary);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    size: medium;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 0 5px; /* Spacing between buttons */
+}
+
+button:hover {
+    background-color: var(--primary-variant);
+    transform: translateY(-2px); /* Slight move upwards */
+}
+
+button:active {
+    transform: translateY(0); /* Return to original position when pressed */
+}
+#Products, #travel {
+    display: none;
+}
