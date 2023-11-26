@@ -15,6 +15,7 @@ let products = {
     shirt: { quantity: 0, purchased: 0 },
     bread: { quantity: 0, purchased: 0 },
     milk: { quantity: 0, purchased: 0 },
+    Fuel: { quantity: 0, purchased: 0 },
 }
 // Prices for each product in each city
 const cityPrices = {
@@ -24,7 +25,8 @@ const cityPrices = {
         jeans: 500,
         shirt: 300,
         bread: 30,
-        milk: 20
+        milk: 20,
+        Fuel: 50
     },
     "Los Angeles": {
         smartphone: 95000,
@@ -32,7 +34,8 @@ const cityPrices = {
         jeans: 6000,
         shirt: 3500,
         bread: 80,
-        milk: 40
+        milk: 40,
+        Fuel: 100
     },
     "San Francisco": {
         smartphone: 1000,
@@ -40,7 +43,8 @@ const cityPrices = {
         jeans: 650,
         shirt: 400,
         bread: 50,
-        milk: 50
+        milk: 50,
+        Fuel: 20
     }
 };
 function saveState() {
