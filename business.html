@@ -11,9 +11,6 @@
         <link rel="manifest" href="manifest.json">
     </head>
     <body>
-        <div id="offlineIndicator" style="display: none;">
-            You are offline.
-        </div>
         
         <nav class="navbar">
             <a href="#home" data-target="home">
@@ -76,7 +73,16 @@
                         <div id="loan-display">Loan: $0</div>
                     </div>
                 </section>
-            
+                <section class="property-section Fuel">
+   <span>Fuel - $<span id="Fuel-price"></span></span>
+                        <button onclick="increment('Fuel')">+</button>
+                        <span class="quantity-display" id="Fuel-quantity">0</span>
+                        <button onclick="decrement('Fuel')">-</button>
+                        <br>
+                        <span class="purchase-display" id="Fuel-purchased">Bought: 0</span>
+                        <button onclick="buy('Fuel')">Buy</button>
+                        <button onclick="sell('Fuel')">Sell</button>
+                </section>
             </section>
         </section>
 
