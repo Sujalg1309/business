@@ -76,6 +76,8 @@ function updateDisplay() {
     document.getElementById('bankBalance').innerText = `Balance: $${gameState.bankBalance}`;
     document.getElementById('loan-display').innerText = `$${gameState.loanBalance}`; // Update the loan display
     document.getElementById('Fuel-price').innerText = `$${gameState.fuel}`;
+    document.getElementById('smartphone-price').innerText = getCurrentCityPrices('smartphone');
+    document.getElementById('laptop-price').innerText = getCurrentCityPrices('laptop');
     document.getElementById('jeans-price').innerText = getCurrentCityPrices('jeans');
     document.getElementById('shirt-price').innerText = getCurrentCityPrices('shirt');
     document.getElementById('bread-price').innerText = getCurrentCityPrices('bread');
