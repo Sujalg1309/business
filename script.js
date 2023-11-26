@@ -197,13 +197,21 @@ function payment() {
 
 function fbuy() {
     const amount = parseInt(document.getElementById('Fuel-quantity').value);
-    if (gameState.fuel >= amount && amount > 0) {
-        gameState.money -= amount;
-        gameState.fuel += amount;
-        saveState();
-        updateDisplay();
+    if (amount > 0) {
+        if (gameState.fuel > 0) {
+            if (gameState.money >= amount) {
+                gameState.fuel += amount;
+                gameState.money -= amount;
+                saveState();
+                updateDisplay();
+            } else {
+                alert("Not enough money to buy fuel");
+            }
+        } else {
+            alert("You don't have a fuel please tap + and try again");
+        }
     } else {
-        alert("Not enough balance or invalid amount.");
+        alert("Invalid fuel value.");
     }
 }
 
