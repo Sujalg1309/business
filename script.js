@@ -73,6 +73,7 @@ function updateDisplay() {
     document.getElementById('current-city').innerText = gameState.currentCity;
     document.getElementById('bankBalance').innerText = `Balance: $${gameState.bankBalance}`;
     document.getElementById('loan-display').innerText = `$${gameState.loanBalance}`; // Update the loan display
+document.getElementById('Fuel-price').innerText = `$${gameState.fuel}`;
     document.getElementById('jeans-price').innerText = getCurrentCityPrices('jeans');
     document.getElementById('shirt-price').innerText = getCurrentCityPrices('shirt');
     document.getElementById('bread-price').innerText = getCurrentCityPrices('bread');
