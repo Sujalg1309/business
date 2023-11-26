@@ -195,7 +195,17 @@ function payment() {
     }
 }
 
-
+function fbuy() {
+    const amount = parseInt(document.getElementById('fuel').value);
+    if (gameState.fuel >= amount && amount > 0) {
+        gameState.money -= amount;
+        gameState.fuel += amount;
+        saveState();
+        updateDisplay();
+    } else {
+        alert("Not enough balance or invalid amount.");
+    }
+}
 
 function changeCity(cityName) {
     const cities = {
