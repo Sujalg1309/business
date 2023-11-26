@@ -196,7 +196,7 @@ function payment() {
 }
 
 function fbuy() {
-    const amount = parseInt(document.getElementById('fuel').value);
+    const amount = parseInt(document.getElementById('Fuel-quantity').value);
     if (gameState.fuel >= amount && amount > 0) {
         gameState.money -= amount;
         gameState.fuel += amount;
