@@ -11,11 +11,13 @@ let gameState = {
 };
    // Simulated data structure to track the products.
 let products = {
+    smartphone: { quantity: 0, purchased: 0 },
+    laptop: { quantity: 0, purchased: 0 },
     jeans: { quantity: 0, purchased: 0 },
     shirt: { quantity: 0, purchased: 0 },
     bread: { quantity: 0, purchased: 0 },
     milk: { quantity: 0, purchased: 0 },
-    Fuel: { quantity: 0, purchased: 0 },
+    Fuel: { quantity: 0, purchased: 0 }
 }
 // Prices for each product in each city
 const cityPrices = {
@@ -73,13 +75,12 @@ function updateDisplay() {
     document.getElementById('current-city').innerText = gameState.currentCity;
     document.getElementById('bankBalance').innerText = `Balance: $${gameState.bankBalance}`;
     document.getElementById('loan-display').innerText = `$${gameState.loanBalance}`; // Update the loan display
-document.getElementById('Fuel-price').innerText = `$${gameState.fuel}`;
+    document.getElementById('Fuel-price').innerText = `$${gameState.fuel}`;
     document.getElementById('jeans-price').innerText = getCurrentCityPrices('jeans');
     document.getElementById('shirt-price').innerText = getCurrentCityPrices('shirt');
     document.getElementById('bread-price').innerText = getCurrentCityPrices('bread');
     document.getElementById('milk-price').innerText = getCurrentCityPrices('milk');
-    document.getElementById('Fuel-price').innerText = getCurrentCityPrices('Fuel');
-
+    document.getElementById('milk-price').innerText = getCurrentCityPrices('Fuel'); 
 }
 
 
@@ -195,29 +196,28 @@ function payment() {
     }
 }
 
-function fbuy() {
-    const amount = parseInt(document.getElementById('Fuel-quantity').value);
-    if (amount > 0) {
-        if (gameState.fuel > 0) {
-            if (gameState.money >= amount) {
-                gameState.fuel += amount;
-                gameState.money -= amount;
-                saveState();
-                updateDisplay();
-            } else {
-                alert("Not enough money to buy fuel");
-            }
+function fbuy(product) {
+    if (products[product] && products[product].quantity > 0) {
+        let totalPrice = products[product].quantity * getCurrentCityPrices(product);
+        
+        if(gameState.money >= totalPrice) {
+            products[product].purchased += products[product].quantity;
+            gameState.fuel += products[product].quantity;
+            gameState.money -= totalPrice;  // deducting the total price from user's money
+            products[product].quantity = 0;
+            saveState();
+            updateDisplay();
         } else {
-            alert("You don't have a fuel please tap + and try again");
+            alert(`You don't have enough money to buy ${product}!`);
         }
     } else {
-        alert("Invalid fuel value.");
+        alert("You need to have at least 1 in quantity to buy!");
     }
 }
 
 function changeCity(cityName) {
     const cities = {
-        "New York": { fuelCost: 0, imgSrc: "New york.png" },
+        "New York": { fuelCost: 0, imgSrc: "New York.jpg" },
         "Los Angeles": { fuelCost: 10, imgSrc: "ls.jpg" },
         "San Francisco": { fuelCost: 15, imgSrc: "sf.jpg" }
     };
