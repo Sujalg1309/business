@@ -65,24 +65,47 @@ function resetGame() {
 
 function updateDisplay() {
     for (let product in products) {
-        // Update the quantity display
-        document.getElementById(`${product}-quantity`).innerText = products[product].quantity;
-        // Update the purchased display
-        document.getElementById(`${product}-purchased`).innerText = `Bought: ${products[product].purchased}`;
+        // Check if the element exists before updating
+        const quantityElement = document.getElementById(`${product}-quantity`);
+        const purchasedElement = document.getElementById(`${product}-purchased`);
+        
+        if (quantityElement && purchasedElement) {
+            // Update the quantity display
+            quantityElement.innerText = products[product].quantity;
+            // Update the purchased display
+            purchasedElement.innerText = `Bought: ${products[product].purchased}`;
+        }
     }
-    document.getElementById('money').innerText = `$ ${gameState.money}`;
-    document.getElementById('fuel').innerText = `${gameState.fuel} L`;
-    document.getElementById('current-city').innerText = gameState.currentCity;
-    document.getElementById('bankBalance').innerText = `Balance: $${gameState.bankBalance}`;
-    document.getElementById('loan-display').innerText = `$${gameState.loanBalance}`; // Update the loan display
-    document.getElementById('smartphone-price').innerText = getCurrentCityPrices('smartphone');
-    document.getElementById('laptop-price').innerText = getCurrentCityPrices('laptop');
-    document.getElementById('jeans-price').innerText = getCurrentCityPrices('jeans');
-    document.getElementById('shirt-price').innerText = getCurrentCityPrices('shirt');
-    document.getElementById('bread-price').innerText = getCurrentCityPrices('bread');
-    document.getElementById('milk-price').innerText = getCurrentCityPrices('milk');
-    document.getElementById('Fuel-Amount').innerText = getCurrentCityPrices('Fuel'); 
+
+    // Check if the elements exist before updating
+    const moneyElement = document.getElementById('money');
+    const fuelElement = document.getElementById('fuel');
+    const currentCityElement = document.getElementById('current-city');
+    const bankBalanceElement = document.getElementById('bankBalance');
+    const loanDisplayElement = document.getElementById('loan-display');
+    const staffDisplayElement = document.getElementById('staff-cost');
+    const taxesDisplayElement = document.getElementById('taxes-due');
+
+
+    if (moneyElement && fuelElement && currentCityElement && bankBalanceElement && loanDisplayElement && staffDisplayElement && taxesDisplayElement) {
+        moneyElement.innerText = `$ ${gameState.money}`;
+        fuelElement.innerText = `${gameState.fuel} L`;
+        currentCityElement.innerText = gameState.currentCity;
+        bankBalanceElement.innerText = `Balance: $${gameState.bankBalance}`;
+        loanDisplayElement.innerText = `$${gameState.loanBalance}`;
+        staffDisplayElement.innerText = `$${gameState.staffCost}`;
+        taxesDisplayElement.innerText = `$${gameState.taxesDue}`;
+    }
+
+    // Update the prices for each product
+    for (let product in products) {
+        const priceElement = document.getElementById(`${product}-price`);
+        if (priceElement) {
+            priceElement.innerText = getCurrentCityPrices(product);
+        }
+    }
 }
+
 
 
 function getCurrentCityPrices(product) {
@@ -216,17 +239,45 @@ function fbuy(product) {
     }
 }
 
+function payStaff() {
+    // Assuming staff cost is deducted from the money
+    if (gameState.money >= gameState.staffCost) {
+        gameState.money -= gameState.staffCost;
+        saveState();
+        updateDisplay();
+    } else {
+        alert("Not enough money to pay staff!");
+    }
+}
+
+function payTaxes() {
+    if (gameState.money >= gameState.taxesDue) {
+        gameState.money -= gameState.taxesDue;
+        gameState.taxesDue = 0;  // Reset taxes due after payment
+        saveState();
+        updateDisplay();
+    } else {
+        alert("Not enough money to pay taxes!");
+    }
+}
+
+
 function changeCity(cityName) {
     const cities = {
-        "New York": { fuelCost: 0, imgSrc: "New York.jpg" },
-        "Los Angeles": { fuelCost: 10, imgSrc: "ls.jpg" },
-        "San Francisco": { fuelCost: 15, imgSrc: "sf.jpg" }
+        "New York": { fuelCost: 0, staffModifier: 1.5, taxesModifier: 1.2, imgSrc: "New York.jpg" },
+        "Los Angeles": { fuelCost: 10, staffModifier: 1.8, taxesModifier: 1.3, imgSrc: "ls.jpg" },
+        "San Francisco": { fuelCost: 15, staffModifier: 1.2, taxesModifier: 1.1, imgSrc: "sf.jpg" }
     };
-    
+
     const fuelCost = cities[cityName].fuelCost;
     if (gameState.fuel >= fuelCost) {
         gameState.fuel -= fuelCost;
         gameState.currentCity = cityName;
+
+        // Update staff cost and taxes based on city modifiers
+        gameState.staffCost = Math.round(gameState.staffCost * cities[cityName].staffModifier);
+        gameState.taxesDue = Math.round(gameState.taxesDue * cities[cityName].taxesModifier);
+
         document.getElementById('city-image').src = cities[cityName].imgSrc;
         document.getElementById('city-name').innerText = cityName;
         saveState();
@@ -235,6 +286,7 @@ function changeCity(cityName) {
         alert(`Not enough fuel to travel to ${cityName}.`);
     }
 }
+
 
 function showSectionById(sectionId) {
     const sections = document.querySelectorAll('#Products, #home, #travel');
@@ -260,7 +312,6 @@ document.querySelectorAll(".navbar a").forEach(link => {
 document.addEventListener("DOMContentLoaded", function() {
     loadState();
     updateDisplay();
-    showWelcomeModal();
 });
 // Function to show/hide the offline indicator
 function updateOnlineStatus() {
