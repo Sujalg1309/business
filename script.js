@@ -77,6 +77,7 @@ function updateDisplay() {
     document.getElementById('shirt-price').innerText = getCurrentCityPrices('shirt');
     document.getElementById('bread-price').innerText = getCurrentCityPrices('bread');
     document.getElementById('milk-price').innerText = getCurrentCityPrices('milk');
+    document.getElementById('Fuel-price').innerText = getCurrentCityPrices('Fuel');
 
 }
 
