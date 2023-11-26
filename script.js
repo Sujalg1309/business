@@ -220,31 +220,25 @@ function payment() {
     }
 }
 
-function fincrement(product) {
-    if (products[product]) {
-        const fv = document.getElementById("Fuel-Amount");
-        products[product].quantity += fv;
-        saveState();
-        updateDisplay();
-    }
-}
+function fbuy() {
+    const fuelAmountInput = document.getElementById('Fuel-Amount');
+    const fuelQuantity = parseInt(fuelAmountInput.value);
 
-function fbuy(product) {
-    if (products[product] && products[product].quantity > fincrement("Fuel") {
-        let totalPrice = products[product].quantity * getCurrentCityPrices(product);
-        
-        if(gameState.money >= totalPrice) {
-            products[product].purchased += products[product].quantity;
-            gameState.fuel += products[product].quantity;
-            gameState.money -= totalPrice;  // deducting the total price from user's money
-            products[product].quantity = 0;
+    if (fuelQuantity > 0) {
+        let totalPrice = fuelQuantity * getCurrentCityPrices('Fuel');
+
+        if (gameState.money >= totalPrice) {
+            products['Fuel'].purchased += fuelQuantity;
+            gameState.fuel += fuelQuantity;
+            gameState.money -= totalPrice;
+            fuelAmountInput.value = ""; // Clear the input field
             saveState();
             updateDisplay();
         } else {
-            alert(`You don't have enough money to buy ${product}!`);
+            alert(`You don't have enough money to buy Fuel!`);
         }
     } else {
-        alert("You need to have at least 1 in quantity to buy!");
+        alert("Enter a valid quantity to buy Fuel!");
     }
 }
 
