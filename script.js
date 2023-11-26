@@ -220,8 +220,17 @@ function payment() {
     }
 }
 
+function fincrement(product) {
+    if (products[product]) {
+        const fv = document.getElementById("Fuel-Amount");
+        products[product].quantity += fv;
+        saveState();
+        updateDisplay();
+    }
+}
+
 function fbuy(product) {
-    if (products[product] && products[product].quantity > 0) {
+    if (products[product] && products[product].quantity > fincrement("Fuel") {
         let totalPrice = products[product].quantity * getCurrentCityPrices(product);
         
         if(gameState.money >= totalPrice) {
