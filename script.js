@@ -5,8 +5,8 @@ let gameState = {
     currentCity: "New York",
     bankBalance: 10000,
     loanBalance: 0,
-    staffCost: 0,
-    taxesDue: 0,
+    staffCost: 500,
+    taxesDue: 100,
 
 };
    // Simulated data structure to track the products.
