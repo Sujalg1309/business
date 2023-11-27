@@ -246,6 +246,7 @@ function payStaff() {
     // Assuming staff cost is deducted from the money
     if (gameState.money >= gameState.staffCost) {
         gameState.money -= gameState.staffCost;
+        gameState.staffCost = 0;
         saveState();
         updateDisplay();
     } else {
