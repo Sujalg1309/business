@@ -4,7 +4,7 @@
   "start_url": "business.html",
   "offline_enabled": true,
   
-  "display": "fullscreen",
+  "display": "standalone",
   "background_color": "#0f0e17",
   "theme_color": "#232946",
   "icons": [
