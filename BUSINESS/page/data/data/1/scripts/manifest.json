@@ -1,0 +1,17 @@
+{
+  "name": "business game",
+  "short_name": "business",
+  "start_url": "business.html",
+  "offline_enabled": true,
+  
+  "display": "fullscreen",
+  "background_color": "#0f0e17",
+  "theme_color": "#232946",
+  "icons": [
+    {
+      "src": "BUSINESS/page/data/data/1/media/business.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

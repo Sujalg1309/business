@@ -268,9 +268,9 @@ function payTaxes() {
 
 function changeCity(cityName) {
     const cities = {
-        "New York": { fuelCost: 0, staffModifier: 1.5, taxesModifier: 1.2, imgSrc: "New York.jpg" },
-        "Los Angeles": { fuelCost: 10, staffModifier: 1.8, taxesModifier: 1.3, imgSrc: "ls.jpg" },
-        "San Francisco": { fuelCost: 15, staffModifier: 1.2, taxesModifier: 1.1, imgSrc: "sf.jpg" }
+        "New York": { fuelCost: 0, staffModifier: 1.5, taxesModifier: 1.2, imgSrc: "data/1/images/New Yerk.jpg" },
+        "Los Angeles": { fuelCost: 10, staffModifier: 1.8, taxesModifier: 1.3, imgSrc: "data/1/images/ls.jpg" },
+        "San Francisco": { fuelCost: 15, staffModifier: 1.2, taxesModifier: 1.1, imgSrc: "data/1/images/sf.jpg" }
     };
 
     const fuelCost = cities[cityName].fuelCost;

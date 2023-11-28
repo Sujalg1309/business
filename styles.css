@@ -141,49 +141,35 @@ h1 {
     transform: translateY(-5px);
 }
 
-/* Responsive Styles */
+#desktopError {
+    background-color: var(--error);
+    color: var(--on-error);
+    text-align: center;
+    padding: 20px;
+    font-size: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1010;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
 
 @media (min-width: 768px) and (max-width: 1024px) { 
-    #desktopError {
-        background-color: var(--error);  // Red background for emphasis
-        color: var(--on-error);
-        text-align: center;
-        padding: 20px;
-        font-size: 20px;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 1010;  // Make sure it displays on top of other content
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    
     body *:not(#desktopError) {
         display: none;
     }
 }
+
+/* Add vendor prefixes as needed for compatibility */
 
 @media (min-width: 1024px) {
-    #desktopError {
-        background-color: var(--error);  // Red background for emphasis
-        color: var(--on-error);
-        text-align: center;
-        padding: 20px;
-        font-size: 20px;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 1010;  // Make sure it displays on top of other content
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    }
-    
-
+    /* You can add additional styles for this range if needed */
     body *:not(#desktopError) {
         display: none;
     }
 }
+
 
 .navbar a {
     margin: 0 25px;

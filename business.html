@@ -8,7 +8,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="styles.css">
-        <link rel="manifest" href="manifest.json">
+        <link rel="manifest" href="BUSINESS/page/data/data/1/scripts/manifest.json">
     </head>
     <body>
         
@@ -40,14 +40,14 @@
                 </div>
                 <div class="city-info">
                     <span class="label">Current City:</span>
-                    <span class="value" id="current-city">New York</span>
+                    <span class="value" id="current-city"></span>
                 </div>
             </div>
         </section>
         <section id="home">
             <section class="main-section">
                 <div id="city-display">
-                    <img id="city-image" src="New Yerk.jpg" alt="City Image">
+                    <img id="city-image" alt="City Image">
                     <h2 id="city-name">New York</h2>
                 </div>
                 <!-- Banking Section -->
@@ -211,56 +211,7 @@
         <div id="desktopError" style="display: none;">
             This game is playable on phones only.
         </div>
-        <script src="script.js"></script>
-        <script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js')
-      .then(registration => {
-        console.log('Service Worker registered with scope:', registration.scope);
-      })
-      .catch(error => {
-        console.error('Service Worker registration failed:', error);
-      });
-  }
-  let deferredPrompt;
-
-window.addEventListener('beforeinstallprompt', (event) => {
-  // Prevent Chrome 67 and earlier from automatically showing the prompt
-  event.preventDefault();
-  // Stash the event so it can be triggered later
-  deferredPrompt = event;
-});
-// Call this function when you want to prompt the user to install
-function promptInstall() {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === 'accepted') {
-        console.log('User accepted the install prompt');
-      } else {
-        console.log('User dismissed the install prompt');
-      }
-      // Clear the deferred prompt variable
-      deferredPrompt = null;
-    });
-  }
-}
-// Call this function when you want to prompt the user to install
-function promptInstall() {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === 'accepted') {
-        console.log('User accepted the install prompt');
-      } else {
-        console.log('User dismissed the install prompt');
-      }
-      // Clear the deferred prompt variable
-      deferredPrompt = null;
-    });
-  }
-}
-
-        </script>
+        <script src="BUSINESS/page/data/data/1/scripts/script.js"></script>
+        <script src="BUSINESS/page/data/data/1/scripts/manifest.js"></script>
     </body>
 </html>
