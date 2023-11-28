@@ -86,7 +86,7 @@ function updateDisplay() {
     // Check if the elements exist before updating
     const moneyElement = document.getElementById('money');
     const fuelElement = document.getElementById('fuel');
-    const currentCityElement = document.getElementById('current-city city-name');
+    const currentCityElement = document.getElementById('current-city');
     const currentCityImageElement = document.getElementById('city-image');
     const bankBalanceElement = document.getElementById('bankBalance');
     const loanDisplayElement = document.getElementById('loan-display');
@@ -98,6 +98,7 @@ function updateDisplay() {
         moneyElement.innerText = `$ ${gameState.money}`;
         fuelElement.innerText = `${gameState.fuel} L`;
         currentCityElement.innerText = gameState.currentCity;
+        document.getElementById('city-name').innerText = gameState.currentCity;
         currentCityImageElement.src = gameState.currentCityImage;
         bankBalanceElement.innerText = `Balance: $${gameState.bankBalance}`;
         loanDisplayElement.innerText = `$${gameState.loanBalance}`;
