@@ -98,7 +98,7 @@ function updateDisplay() {
         moneyElement.innerText = `$ ${gameState.money}`;
         fuelElement.innerText = `${gameState.fuel} L`;
         currentCityElement.innerText = gameState.currentCity;
-        currentCityImageElement.innerText = gameState.currentCityImage;
+        currentCityImageElement.src = gameState.currentCityImage;
         bankBalanceElement.innerText = `Balance: $${gameState.bankBalance}`;
         loanDisplayElement.innerText = `$${gameState.loanBalance}`;
         staffDisplayElement.innerText = `$${gameState.staffCost}`;
