@@ -226,22 +226,9 @@ h1 {
 .material-icons {
     margin-right: 8px;
 }
-#offlineIndicator {
-    background-color: var(--error); /* Using the error color for emphasis */
-    color: var(--on-error);
-    text-align: center;
-    padding: 10px 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    size: 100vh;
-    width: 100%;
-    z-index: 1010; /* Higher than your navbar, so it shows on top */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    font-weight: bold;
-}
+
 /* Style for the input */
-#loanAmount,#bankingAmount {
+#loanAmount,#bankingAmount,#staff-Amount,#taxes-Amount {
     padding: 10px;
     border: 2px solid var(--primary-variant);
     border-radius: 5px;
