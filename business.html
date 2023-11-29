@@ -1,218 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Business Tycoon</title>
-        <link rel="shortcut icon" href="BUSINESS/page/data/data/1/media/business.png" type="image/x-icon">
-        <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="styles.css">
-        <link rel="manifest" href="BUSINESS/page/data/data/1/scripts/manifest.json">
-    </head>
-    <body>
-        
-        <nav class="navbar">
-            <a href="#home" data-target="home">
-            <i class="material-icons">home</i>
-            Home
-            </a>
-            <a href="#Products" data-target="Products">
-            <i class="material-icons">shopping_cart</i>
-            Products
-            </a>
-            <a href="#travel" data-target="travel">
-            <i class="material-icons">flight</i>
-            Travel
-            </a>
-        </nav>
-      
-        <section class="top-section">
-            <h1>Business Tycoon</h1>
-            <div class="top-info">
-                <div class="money-info">
-                    <span class="label">Money:</span>
-                    <span class="value" id="money">$20,000</span>
-                </div>
-                <div class="fuel-info">
-                    <span class="label">Fuel:</span>
-                    <span class="value" id="fuel">50</span>
-                </div>
-                <div class="city-info">
-                    <span class="label">Current City:</span>
-                    <span class="value" id="current-city"></span>
-                </div>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Business Tycoon</title>
+      <link rel="shortcut icon" href="BUSINESS/page/data/data/1/media/business.png" type="image/x-icon">
+      <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link rel="stylesheet" href="styles.css">
+      <link rel="manifest" href="BUSINESS/page/data/data/1/scripts/manifest.json">
+   </head>
+   <body>
+      <nav class="navbar">
+         <a href="#home" data-target="home">
+         <i class="material-icons">home</i>
+         Home
+         </a>
+         <a href="#Products" data-target="Products">
+         <i class="material-icons">shopping_cart</i>
+         Products
+         </a>
+         <a href="#travel" data-target="travel">
+         <i class="material-icons">flight</i>
+         Travel
+         </a>
+      </nav>
+      <section class="top-section">
+         <h1>Business Tycoon</h1>
+         <div class="top-info">
+            <div class="money-info">
+               <span class="label">Money:</span>
+               <span class="value" id="money">$20,000</span>
             </div>
-        </section>
-        <section id="home">
-            <section class="main-section">
-                <div id="city-display">
-                    <img id="city-image" src="BUSINESS/page/data/data/1/media/New Yerk.jpg
-                        " alt="City Image">
-                    <h2 id="city-name">New york</h2>
-                </div>
-                <!-- Banking Section -->
-                <section class="property-section banking">
-                    <h3><i class="material-icons">account_balance</i> Banking</h3>
-                    <div class="property-content">
-                        <input type="number" id="bankingAmount" placeholder="Enter Amount">
-                        <br><br>
-                        <button onclick="deposit()">Deposit</button>
-                        <button onclick="withdraw()">Withdraw</button>
-                        <div id="bankBalance">Balance: $10,000</div>
-                        <!-- Starting bank balance display -->
-                    </div>
-                </section>
-                <!-- Loans Section -->
-                <section class="property-section loans">
-                    <h3><i class="material-icons">attach_money</i> Loans</h3>
-                    <div class="property-content">
-                        <input type="number" id="loanAmount" placeholder="Enter Amount">
-                        <br><br>
-                        <button onclick="borrow()">Borrow</button>
-                        <button onclick="payment()">Payment</button>
-                        <div id="loan-display">Loan: $0</div>
-                    </div>
-                </section>
-                <!-- Fuel Section -->
-                <section class="property-section Fuel">
-                       <h3><i class="material-icons">local_gas_station</i> Fuel</h3>
-                       <div class="property-content">
-                           <input type="number" id="Fuel-Amount" placeholder="Enter Amount">
-                           <br><br>
-                           <button onclick="fbuy()">buy</button>                        
-                            <div id="fuel">Fuel: $<span id="Fuel-price"></span></div>
-                       </div>
-                    </div>
-
-                </section>
-                 <!-- staff Section -->
-                <section class="property-section staff">
-                       <h3>Staff</h3>
-                       <div class="property-content">
-                           <input type="number" id="staff-Amount" placeholder="Enter Amount">
-                           <br><br>
-                           <button onclick="payStaff()">Pay Staff</button>                        
-                            <div id="staff-cost">Staff: 0</div>
-                       </div>
-                    </div>
-                    
-                </section>
-                 <!-- taxes Section -->
-                <section class="property-section taxes">
-                       <h3>Taxes</h3>
-                       <div class="property-content">
-                           <input type="number" id="taxes-Amount" placeholder="Enter Amount">
-                           <br><br>
-                           <button onclick="payTaxes()">Pay Taxes</button>                        
-                            <div id="taxes-due">Taxes: 0</div>
-                       </div>
-                    </div>
-                    
-                </section>
+            <div class="fuel-info">
+               <span class="label">Fuel:</span>
+               <span class="value" id="fuel">50</span>
+            </div>
+            <div class="city-info">
+               <span class="label">Current City:</span>
+               <span class="value" id="current-city"></span>
+            </div>
+         </div>
+      </section>
+      <section id="home">
+         <section class="main-section">
+            <div id="city-display">
+               <img id="city-image" src="BUSINESS/page/data/data/1/media/New Yerk.jpg
+                  " alt="City Image">
+               <h2 id="city-name">New york</h2>
+            </div>
+            <!-- Banking Section -->
+            <section class="property-section banking">
+               <h3><i class="material-icons">account_balance</i> Banking</h3>
+               <div class="property-content">
+                  <input type="number" id="bankingAmount" placeholder="Enter Amount">
+                  <br><br>
+                  <button onclick="deposit()">Deposit</button>
+                  <button onclick="withdraw()">Withdraw</button>
+                  <div id="bankBalance">Balance: $10,000</div>
+                  <!-- Starting bank balance display -->
+               </div>
             </section>
-        </section>
-
-        <section id="Products">
-            <div class="category" id="apparel">
-                <h3>Apparel</h3>
-                <ul>
-                    <li>
-                        <span>Jeans - $<span id="jeans-price"></span></span>
-                        <button onclick="increment('jeans')">+</button>
-                        <span class="quantity-display" id="jeans-quantity">0</span>
-                        <button onclick="decrement('jeans')">-</button>
-                        <br>
-                        <span class="purchase-display" id="jeans-purchased">Bought: 0</span>
-                        <button onclick="buy('jeans')">Buy</button>
-                        <button onclick="sell('jeans')">Sell</button>
-                    </li>
-                    <li>
-                        <span>Shirt - $<span id="shirt-price"></span></span>
-                        <button onclick="increment('shirt')">+</button>
-                        <span class="quantity-display" id="shirt-quantity">0</span>
-                        <button onclick="decrement('shirt')">-</button>
-                        <br>
-                        <span class="purchase-display" id="shirt-purchased">Bought: 0</span>
-                        <button onclick="buy('shirt')">Buy</button>
-                        <button onclick="sell('shirt')">Sell</button>
-                    </li>
-                </ul>
-            </div>
-            <div class="category" id="groceries">
-                <h3>Groceries</h3>
-                <ul>
-                    <li>
-                        <span>Bread - $<span id="bread-price"></span></span>
-                        <button onclick="increment('bread')">+</button>
-                        <span class="quantity-display" id="bread-quantity">0</span>
-                        <button onclick="decrement('bread')">-</button>
-                        <br>
-                        <span class="purchase-display" id="bread-purchased">Bought: 0</span>
-                        <button onclick="buy('bread')">Buy</button>
-                        <button onclick="sell('bread')">Sell</button>
-                    </li>
-                    <li>
-                        <span>Milk - $<span id="milk-price"></span></span>
-                        <button onclick="increment('milk')">+</button>
-                        <span class="quantity-display" id="milk-quantity">0</span>
-                        <button onclick="decrement('milk')">-</button>
-                        <br>
-                        <span class="purchase-display" id="milk-purchased">Bought: 0</span>
-                        <button onclick="buy('milk')">Buy</button>
-                        <button onclick="sell('milk')">Sell</button>
-                    </li>
-                </ul>
-            </div>
-             <div class="category" id="electronics">
-                <h3>Electronics</h3>
-                <ul>
-                    <li>
-                        <span>SmartPhone - $<span id="smartphone-price"></span></span>
-                        <button onclick="increment('smartphone')">+</button>
-                        <span class="quantity-display" id="smartphone-quantity">0</span>
-                        <button onclick="decrement('smartphone')">-</button>
-                        <br>
-                        <span class="purchase-display" id="smartphone-purchased">Bought: 0</span>
-                        <button onclick="buy('smartphone')">Buy</button>
-                        <button onclick="sell('smartphone')">Sell</button>
-                    </li>
-                    <li>
-                        <span>laptop - $<span id="laptop-price"></span></span>
-                        <button onclick="increment('laptop')">+</button>
-                        <span class="quantity-display" id="laptop-quantity">0</span>
-                        <button onclick="decrement('laptop')">-</button>
-                        <br>
-                        <span class="purchase-display" id="laptop-purchased">Bought: 0</span>
-                        <button onclick="buy('laptop')">Buy</button>
-                        <button onclick="sell('laptop')">Sell</button>
-                    </li>
-                </ul>
-            </div>
-        </section>
-        
-        
-        <!-- Travel Section -->
-        <section id="travel">
-            <h2><i class="material-icons">flight</i> Choose your destination</h2>
-            <div id="city-choices">
-                <button onclick="changeCity('New York')">New York</button>
-                <button onclick="changeCity('Los Angeles')">Los Angeles</button>
-                <button onclick="changeCity('San Francisco')">San Francisco</button>
-            </div>
-            <div id="city-details"></div>
-        </section>
-        <footer id="footer">
-            <p>&copy; 2023 Business Tycoon</p>
-            <a href="https://instagram.com/_.sujal._512" class="instagram-link">
-            <i class="material-icons">camera_alt</i>
-            Instagram
-            </a>
-        </footer>
-        <div id="desktopError" style="display: none;">
-            This game is playable on phones only.
-        </div>
-        <script src="BUSINESS/page/data/data/1/scripts/script.js"></script>
-        <script src="BUSINESS/page/data/data/1/scripts/manifest.js"></script>
-    </body>
+            <!-- Loans Section -->
+            <section class="property-section loans">
+               <h3><i class="material-icons">attach_money</i> Loans</h3>
+               <div class="property-content">
+                  <input type="number" id="loanAmount" placeholder="Enter Amount">
+                  <br><br>
+                  <button onclick="borrow()">Borrow</button>
+                  <button onclick="payment()">Payment</button>
+                  <div id="loan-display">Loan: $0</div>
+               </div>
+            </section>
+            <!-- Fuel Section -->
+            <section class="property-section Fuel">
+               <h3><i class="material-icons">local_gas_station</i> Fuel</h3>
+               <div class="property-content">
+                  <input type="number" id="Fuel-Amount" placeholder="Enter Amount">
+                  <br><br>
+                  <button onclick="fbuy()">buy</button>                        
+                  <div id="fuel">Fuel: $<span id="Fuel-price"></span></div>
+               </div>
+               </div>
+            </section>
+            <!-- staff Section -->
+            <section class="property-section staff">
+               <h3>Staff</h3>
+               <div class="property-content">
+                  <input type="number" id="staff-Amount" placeholder="Enter Amount">
+                  <br><br>
+                  <button onclick="payStaff()">Pay Staff</button>                        
+                  <div id="staff-cost">Staff: 0</div>
+               </div>
+               </div>
+            </section>
+            <!-- taxes Section -->
+            <section class="property-section taxes">
+               <h3>Taxes</h3>
+               <div class="property-content">
+                  <input type="number" id="taxes-Amount" placeholder="Enter Amount">
+                  <br><br>
+                  <button onclick="payTaxes()">Pay Taxes</button>                        
+                  <div id="taxes-due">Taxes: 0</div>
+               </div>
+               </div>
+            </section>
+         </section>
+      </section>
+      <section id="Products">
+         <div class="category" id="apparel">
+            <h3>Apparel</h3>
+            <ul>
+               <li>
+                  <span>Jeans - $<span id="jeans-price"></span></span>
+                  <button onclick="increment('jeans')">+</button>
+                  <span class="quantity-display" id="jeans-quantity">0</span>
+                  <button onclick="decrement('jeans')">-</button>
+                  <br>
+                  <span class="purchase-display" id="jeans-purchased">Bought: 0</span>
+                  <button onclick="buy('jeans')">Buy</button>
+                  <button onclick="sell('jeans')">Sell</button>
+               </li>
+               <li>
+                  <span>Shirt - $<span id="shirt-price"></span></span>
+                  <button onclick="increment('shirt')">+</button>
+                  <span class="quantity-display" id="shirt-quantity">0</span>
+                  <button onclick="decrement('shirt')">-</button>
+                  <br>
+                  <span class="purchase-display" id="shirt-purchased">Bought: 0</span>
+                  <button onclick="buy('shirt')">Buy</button>
+                  <button onclick="sell('shirt')">Sell</button>
+               </li>
+            </ul>
+         </div>
+         <div class="category" id="groceries">
+            <h3>Groceries</h3>
+            <ul>
+               <li>
+                  <span>Bread - $<span id="bread-price"></span></span>
+                  <button onclick="increment('bread')">+</button>
+                  <span class="quantity-display" id="bread-quantity">0</span>
+                  <button onclick="decrement('bread')">-</button>
+                  <br>
+                  <span class="purchase-display" id="bread-purchased">Bought: 0</span>
+                  <button onclick="buy('bread')">Buy</button>
+                  <button onclick="sell('bread')">Sell</button>
+               </li>
+               <li>
+                  <span>Milk - $<span id="milk-price"></span></span>
+                  <button onclick="increment('milk')">+</button>
+                  <span class="quantity-display" id="milk-quantity">0</span>
+                  <button onclick="decrement('milk')">-</button>
+                  <br>
+                  <span class="purchase-display" id="milk-purchased">Bought: 0</span>
+                  <button onclick="buy('milk')">Buy</button>
+                  <button onclick="sell('milk')">Sell</button>
+               </li>
+            </ul>
+         </div>
+         <div class="category" id="electronics">
+            <h3>Electronics</h3>
+            <ul>
+               <li>
+                  <span>SmartPhone - $<span id="smartphone-price"></span></span>
+                  <button onclick="increment('smartphone')">+</button>
+                  <span class="quantity-display" id="smartphone-quantity">0</span>
+                  <button onclick="decrement('smartphone')">-</button>
+                  <br>
+                  <span class="purchase-display" id="smartphone-purchased">Bought: 0</span>
+                  <button onclick="buy('smartphone')">Buy</button>
+                  <button onclick="sell('smartphone')">Sell</button>
+               </li>
+               <li>
+                  <span>laptop - $<span id="laptop-price"></span></span>
+                  <button onclick="increment('laptop')">+</button>
+                  <span class="quantity-display" id="laptop-quantity">0</span>
+                  <button onclick="decrement('laptop')">-</button>
+                  <br>
+                  <span class="purchase-display" id="laptop-purchased">Bought: 0</span>
+                  <button onclick="buy('laptop')">Buy</button>
+                  <button onclick="sell('laptop')">Sell</button>
+               </li>
+            </ul>
+         </div>
+      </section>
+      <!-- Travel Section -->
+      <section id="travel">
+         <h2><i class="material-icons">flight</i> Choose your destination</h2>
+         <div id="city-choices">
+            <button onclick="changeCity('New York')">New York <span class="New York"></span></button>
+            <button onclick="changeCity('Los Angeles')">Los Angeles <span class="los Angeles"></span></button>
+            <button onclick="changeCity('San Francisco')">San Francisco <span class="San Francisco"></span></button>
+         </div>
+         <div id="city-details"></div>
+      </section>
+      <footer id="footer">
+         <p>&copy; 2023 Business Tycoon</p>
+         <a href="https://instagram.com/_.sujal._512" class="instagram-link">
+         <i class="material-icons">camera_alt</i>
+         Instagram
+         </a>
+      </footer>
+      <div id="desktopError" style="display: none;">
+         This game is playable on phones only.
+      </div>
+      <script src="BUSINESS/page/data/data/1/scripts/script.js"></script>
+      <script>
+         if ('serviceWorker' in navigator) {
+         navigator.serviceWorker.register('/sw.js')
+         .then(registration => {
+         console.log('Service Worker registered with scope:', registration.scope);
+         })
+         .catch(error => {
+         console.error('Service Worker registration failed:', error);
+         });
+         }
+         let deferredPrompt;
+         
+         window.addEventListener('beforeinstallprompt', (event) => {
+         // Prevent Chrome 67 and earlier from automatically showing the prompt
+         event.preventDefault();
+         // Stash the event so it can be triggered later
+         deferredPrompt = event;
+         });
+         // Call this function when you want to prompt the user to install
+         function promptInstall() {
+         if (deferredPrompt) {
+         deferredPrompt.prompt();
+         deferredPrompt.userChoice.then((choiceResult) => {
+         if (choiceResult.outcome === 'accepted') {
+         console.log('User accepted the install prompt');
+         } else {
+         console.log('User dismissed the install prompt');
+         }
+         // Clear the deferred prompt variable
+         deferredPrompt = null;
+         });
+         }
+         }
+         // Call this function when you want to prompt the user to install
+         function promptInstall() {
+         if (deferredPrompt) {
+         deferredPrompt.prompt();
+         deferredPrompt.userChoice.then((choiceResult) => {
+         if (choiceResult.outcome === 'accepted') {
+         console.log('User accepted the install prompt');
+         } else {
+         console.log('User dismissed the install prompt');
+         }
+         // Clear the deferred prompt variable
+         deferredPrompt = null;
+         });
+         }
+         }
+      </script>
+   </body>
 </html>
