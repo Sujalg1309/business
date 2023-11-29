@@ -243,16 +243,6 @@ document.addEventListener("DOMContentLoaded", function () {
     updateDisplay();
 });
 
-function updateOnlineStatus() {
-    const offlineIndicator = document.getElementById('offlineIndicator');
-    if (!navigator.onLine) { offlineIndicator.style.display = 'block'; }
-    else { offlineIndicator.style.display = 'none'; }
-}
-
-window.addEventListener('online', updateOnlineStatus);
-window.addEventListener('offline', updateOnlineStatus);
-updateOnlineStatus();
-
 function checkScreenWidth() {
     const desktopError = document.getElementById('desktopError');
     if (window.innerWidth > 768) { desktopError.style.display = 'block'; }
