@@ -228,7 +228,7 @@ h1 {
 }
 
 /* Style for the input */
-#loanAmount,#bankingAmount,#staff-Amount,#taxes-Amount {
+#loanAmount,#bankingAmount,#staff-Amount,#taxes-Amount,#Fuel-Amount {
     padding: 10px;
     border: 2px solid var(--primary-variant);
     border-radius: 5px;
