@@ -68,7 +68,7 @@ function updateDisplay() {
             priceElement.innerText = getCurrentCityPrices(product);
         }
     }
-    for (let cityprices in citys) {
+    for (let citys in cityprices) {
         const price = document.getElementById(citys);
         if (price) {
             price.innerText = getCurrentCityprices(citys); 
