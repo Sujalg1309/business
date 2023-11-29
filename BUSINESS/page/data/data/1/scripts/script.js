@@ -223,7 +223,7 @@ function changeCity(cityName) {
         saveState();
         updateDisplay();
     } else { alert(`Not enough fuel to travel to ${cityName}.`); }
-}
+} else { alert(`you are already in ${cityName}.`); }
 }
 
 function showSectionById(sectionId) {
