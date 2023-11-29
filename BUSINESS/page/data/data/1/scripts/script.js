@@ -209,7 +209,9 @@ function changeCity(cityName) {
         "Los Angeles": { fuelCost: 40, staffModifier: 1.8, taxesModifier: 1.3, imgSrc: "BUSINESS/page/data/data/1/media/ls.jpg" },
         "San Francisco": { fuelCost: 25, staffModifier: 1.2, taxesModifier: 1.1, imgSrc: "BUSINESS/page/data/data/1/media/sf.jpg" }
     };
+    const city = gameState.currentCity;
     const fuelCost = cities[cityName].fuelCost;
+    if (cityName != city) {
     if (gameState.fuel >= fuelCost) {
         gameState.fuel -= fuelCost;
         gameState.currentCity = cityName;
@@ -221,6 +223,7 @@ function changeCity(cityName) {
         saveState();
         updateDisplay();
     } else { alert(`Not enough fuel to travel to ${cityName}.`); }
+}
 }
 
 function showSectionById(sectionId) {
