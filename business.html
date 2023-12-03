@@ -7,20 +7,32 @@
       <link rel="shortcut icon" href="BUSINESS/page/data/data/1/media/business.png" type="image/x-icon">
       <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!-- Font Awesome CDN link for icons -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
       <link rel="stylesheet" href="styles.css">
+      <link rel="stylesheet" href="style.css">
       <link rel="manifest" href="manifest.json">
    </head>
    <body>
+      <div class="loader">
+         <svg class="pl" width="240" height="240" viewBox="0 0 240 240">
+            <circle class="pl__ring pl__ring--a" cx="120" cy="120" r="105" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 660" stroke-dashoffset="-330" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--b" cx="120" cy="120" r="35" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 220" stroke-dashoffset="-110" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--c" cx="85" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--d" cx="155" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+         </svg>
+      </div>
+      <ul class="notifications"></ul>
       <nav class="navbar">
-         <a href="#home" data-target="home">
+         <a href="#home" data-target="home" class="slide-in-bottom">
          <i class="material-icons">home</i>
          Home
          </a>
-         <a href="#Products" data-target="Products">
+         <a href="#Products" data-target="Products" class="slide-in-bottom">
          <i class="material-icons">shopping_cart</i>
          Products
          </a>
-         <a href="#travel" data-target="travel">
+         <a href="#travel" data-target="travel" class="slide-in-bottom">
          <i class="material-icons">flight</i>
          Travel
          </a>
@@ -46,7 +58,7 @@
          <section class="main-section">
             <div id="city-display">
                <img id="city-image" src="BUSINESS/page/data/data/1/media/New Yerk.jpg
-                  " alt="City Image">
+                  " class="scale-in" alt="City Image">
                <h2 id="city-name">New york</h2>
             </div>
             <!-- Banking Section -->

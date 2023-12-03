@@ -1,3 +1,55 @@
+const notifications = document.querySelector(".notifications"),
+buttons = document.querySelectorAll(".buttons .btn");
+
+let toastDetails = {
+    timer: 5000,
+    success: {
+        icon: 'fa-circle-check',
+        text: 'success',
+    },
+    error: {
+        icon: 'fa-circle-xmark',
+        text: '',
+    },
+    warning: {
+        icon: 'fa-circle-exclamation',
+        text: '',
+    },
+    info: {
+        icon: 'fa-circle-info',
+        text: '',
+    }
+}
+
+const removeToast = (toast) => {
+    toast.classList.add("hide");
+    if(toast.timeoutId) clearTimeout(toast.timeoutId); // Clearing the timeout for the toast
+    setTimeout(() => toast.remove(), 500); // Removing the toast after 500ms
+}
+
+const createToast = (id,text) => {
+
+    const icon = toastDetails[id].icon;
+    const toast = document.createElement("li"); // Creating a new 'li' element for the toast
+    toast.className = `toast ${id}`; // Setting the classes for the toast
+    // Setting the inner HTML for the toast
+    toast.innerHTML = `<div class="column">
+                         <i class="fa-solid ${icon}"></i>
+                         <span>${text}</span>
+                      </div>
+                      <i class="fa-solid fa-xmark" onclick="removeToast(this.parentElement)"></i>`;
+    notifications.appendChild(toast); // Append the toast to the notification ul
+    // Setting a timeout to remove the toast after the specified duration
+    toast.timeoutId = setTimeout(() => removeToast(toast), toastDetails.timer);
+}
+
+// Adding a click event listener to each button to create a toast when clicked
+buttons.forEach(btn => {
+    btn.addEventListener("click", () => createToast(btn.id));
+});
+
+
+
 let gameState = {
     money: 20000,
     fuel: 50,
@@ -7,16 +59,15 @@ let gameState = {
     loanBalance: 0,
     staffCost: 500,
     taxesDue: 100,
-};
-
-let products = {
-    smartphone: { quantity: 0, purchased: 0 },
-    laptop: { quantity: 0, purchased: 0 },
-    jeans: { quantity: 0, purchased: 0 },
-    shirt: { quantity: 0, purchased: 0 },
-    bread: { quantity: 0, purchased: 0 },
-    milk: { quantity: 0, purchased: 0 },
-    Fuel: { quantity: 0, purchased: 0 },
+    products: {
+        smartphone: { quantity: 0, purchased: 0 },
+        laptop: { quantity: 0, purchased: 0 },
+        jeans: { quantity: 0, purchased: 0 },
+        shirt: { quantity: 0, purchased: 0 },
+        bread: { quantity: 0, purchased: 0 },
+        milk: { quantity: 0, purchased: 0 },
+        Fuel: { quantity: 0, purchased: 0 },
+    }
 };
 
 const cityPrices = {
@@ -35,12 +86,12 @@ function saveState() { localStorage.setItem('gameState', JSON.stringify(gameStat
 function loadState() { const savedState = localStorage.getItem('gameState'); if (savedState) { gameState = JSON.parse(savedState); } }
 function resetGame() { localStorage.removeItem('gameState'); location.reload(); }
 function updateDisplay() {
-    for (let product in products) {
+    for (let product in gameState.products) {
         const quantityElement = document.getElementById(`${product}-quantity`);
         const purchasedElement = document.getElementById(`${product}-purchased`);
         if (quantityElement && purchasedElement) {
-            quantityElement.innerText = products[product].quantity;
-            purchasedElement.innerText = `Bought: ${products[product].purchased}`;
+            quantityElement.innerText = gameState.products[product].quantity;
+            purchasedElement.innerText = `Bought: ${gameState.products[product].purchased}`;
         }
     }
     const moneyElement = document.getElementById('money');
@@ -62,7 +113,7 @@ function updateDisplay() {
         staffDisplayElement.innerText = `$${gameState.staffCost}`;
         taxesDisplayElement.innerText = `$${gameState.taxesDue}`;
     }
-    for (let product in products) {
+    for (let product in gameState.products) {
         const priceElement = document.getElementById(`${product}-price`);
         if (priceElement) {
             priceElement.innerText = getCurrentCityPrices(product);
@@ -78,56 +129,89 @@ function updateDisplay() {
 function getCurrentCityprices(citys) { return cityprices[gameState.currentCity][citys]}
 function getCurrentCityPrices(product) { return cityPrices[gameState.currentCity][product]; }
 
-function increment(product) { if (products[product]) { products[product].quantity += 1; saveState(); updateDisplay(); } }
+function increment(product) { if (gameState.products[product]) { gameState.products[product].quantity += 1; saveState(); updateDisplay(); } }
 
-function decrement(product) { if (products[product] && products[product].quantity > 0) { products[product].quantity -= 1; saveState(); updateDisplay(); } }
+function decrement(product) { if (gameState.products[product] && gameState.products[product].quantity > 0) { gameState.products[product].quantity -= 1; saveState(); updateDisplay(); } }
+
+
+
+
 
 function buy(product) {
-    if (products[product] && products[product].quantity > 0) {
-        let totalPrice = products[product].quantity * getCurrentCityPrices(product);
+    if (gameState.products[product] && gameState.products[product].quantity > 0) {
+        let totalPrice = gameState.products[product].quantity * getCurrentCityPrices(product);
         if (gameState.money >= totalPrice) {
-            products[product].purchased += products[product].quantity;
+            gameState.products[product].purchased += gameState.products[product].quantity;
             gameState.money -= totalPrice;
-            products[product].quantity = 0;
+            let quantityBought = gameState.products[product].quantity;
+            gameState.products[product].quantity = 0;
             saveState();
             updateDisplay();
-        } else { alert(`You don't have enough money to buy ${product}!`); }
-    } else { alert("You need to have at least 1 in quantity to buy!"); }
-}
+
+            createToast('success', `successfully buy ${quantityBought} ${product}`);
+        } else {
+            createToast('error', 'Not enough money to make the purchase!');
+    }} else {
+        createToast('warning', 'You need to have at least 1 in quantity to buy!');
+    }
+    }
 
 function sell(product) {
-    if (products[product] && products[product].purchased > 0) {
-        let sellingPrice = getCurrentCityPrices(product);
-        products[product].purchased -= 1;
+    if (gameState.products[product] && gameState.products[product].quantity > 0) {
+    if (gameState.products[product] && gameState.products[product].purchased > 0) {
+        let sellingPrice = getCurrentCityPrices(product) * gameState.products[product].quantity;
+        gameState.products[product].purchased -= gameState.products[product].quantity;
         gameState.money += sellingPrice;
+        let quantitysold = gameState.products[product].quantity; 
+        gameState.products[product].quantity = 0;
         saveState();
         updateDisplay();
-    } else { alert("You don't have any to sell!"); }
-}
 
+        createToast('success', `successfully sell ${quantitysold} ${product}`);
+         } else { createToast('error', "You don't have any to sell!"); }
+        } else { createToast('warning', 'You need to have at least 1 in quantity to sell!'); }
+}
 function deposit() {
     const bankingAmount = document.getElementById('bankingAmount');
-    const amount = parseInt(document.getElementById('bankingAmount').value);
-    if (gameState.money >= amount && amount > 0) {
-        gameState.money -= amount;
-        gameState.bankBalance += amount;
-        bankingAmount = "";
-        saveState();
-        updateDisplay();
-    } else { alert("Not enough money or invalid amount."); }
+    const amount = parseInt(bankingAmount.value);
+
+    if (amount > 0) {
+        if (gameState.money >= amount) {
+            gameState.money -= amount;
+            gameState.bankBalance += amount;
+            bankingAmount.value = "";
+            saveState();
+            updateDisplay();
+            createToast('success', 'Deposit successful');
+        } else {
+            createToast('error', 'Not enough money to deposit');
+        }
+    } else {
+        createToast('error', 'Enter a valid deposit amount');
+    }
 }
+
 
 function withdraw() {
     const bankingAmount = document.getElementById('bankingAmount');
-    const amount = parseInt(document.getElementById('bankingAmount').value);
-    if (gameState.bankBalance >= amount && amount > 0) {
-        gameState.bankBalance -= amount;
-        gameState.money += amount;
-        bankingAmount = "";
-        saveState();
-        updateDisplay();
-    } else { alert("Not enough balance or invalid amount."); }
+    const amount = parseInt(bankingAmount.value);
+
+    if (amount > 0) {
+    if (gameState.bankBalance >= amount) {
+            gameState.bankBalance -= amount;
+            gameState.money += amount;
+            bankingAmount.value = "";
+            saveState();
+            updateDisplay();
+            createToast('success', 'Withdraw successful');
+        } else {
+            createToast('error', 'Not enough money to withdraw');
+        }
+    } else {
+        createToast('error', "Enter a valid withdraw amount");
+    }
 }
+
 
 function borrow() {
     const loanAmount = document.getElementById('loanAmount');
@@ -139,8 +223,8 @@ function borrow() {
             loanAmount.value = "";
             saveState();
             updateDisplay();
-        } else { alert("You already have an outstanding loan."); }
-    } else { alert("Invalid loan amount."); }
+        } else { createToast('warning',"You already have an outstanding loan."); }
+    } else { createToast('error',"Invalid loan amount."); }
 }
 
 function payment() {
@@ -254,3 +338,29 @@ function checkScreenWidth() {
 
 checkScreenWidth();
 window.addEventListener('resize', checkScreenWidth);
+
+// Modify the event listener for navbar links
+document.querySelectorAll(".navbar a").forEach(link => {
+    link.addEventListener("click", function (event) {
+        event.preventDefault();
+        const target = this.getAttribute("data-target");
+        const targetElement = document.getElementById(target);
+
+        if (targetElement) {
+            targetElement.scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+    });
+});
+
+
+window.addEventListener("load", () => {
+    const loader = document.querySelector(".loader");
+
+        let load = loader.classList.add("loader--hidden");
+
+         loader.addEventListener("transitionend", () => {
+            document.body.removeChild(loader);
+        });
+    });
