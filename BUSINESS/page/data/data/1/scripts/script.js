@@ -96,15 +96,19 @@ function updateDisplay() {
     }
     const moneyElement = document.getElementById('money');
     const fuelElement = document.getElementById('fuel');
+    const fuelPriceElement = document.getElementById('Fuel-price');
     const currentCityElement = document.getElementById('current-city');
     const currentCityImageElement = document.getElementById('city-image');
     const bankBalanceElement = document.getElementById('bankBalance');
     const loanDisplayElement = document.getElementById('loan-display');
     const staffDisplayElement = document.getElementById('staff-cost');
     const taxesDisplayElement = document.getElementById('taxes-due');
-    if (moneyElement && fuelElement && currentCityElement && currentCityImageElement && bankBalanceElement && loanDisplayElement && staffDisplayElement && taxesDisplayElement) {
+    
+    if (moneyElement && fuelElement && fuelPriceElement && currentCityElement && currentCityImageElement && bankBalanceElement && loanDisplayElement && staffDisplayElement && taxesDisplayElement) {
         moneyElement.innerText = `$ ${gameState.money}`;
         fuelElement.innerText = `${gameState.fuel} L`;
+        const fuelPrice = getCurrentCityPrices('Fuel');
+        fuelPriceElement.innerText = fuelPrice;
         currentCityElement.innerText = gameState.currentCity;
         document.getElementById('city-name').innerText = gameState.currentCity;
         currentCityImageElement.src = gameState.currentCityImage;
@@ -113,17 +117,21 @@ function updateDisplay() {
         staffDisplayElement.innerText = `$${gameState.staffCost}`;
         taxesDisplayElement.innerText = `$${gameState.taxesDue}`;
     }
+    
     for (let product in gameState.products) {
         const priceElement = document.getElementById(`${product}-price`);
         if (priceElement) {
-            priceElement.innerText = getCurrentCityPrices(product);
+            const price = getCurrentCityPrices(product);
+            console.log(`Updating ${product} price: $${price}`);
+            priceElement.innerText = price;
         }
     }
+    
     for (let citys in cityprices) {
         const price = document.getElementById(citys);
         if (price) {
             price.innerText = getCurrentCityprices(citys); 
-    }
+        }
     }
 }
 function getCurrentCityprices(citys) { return cityprices[gameState.currentCity][citys]}
@@ -223,6 +231,7 @@ function borrow() {
             loanAmount.value = "";
             saveState();
             updateDisplay();
+            createToast('success', 'borrow successful');
         } else { createToast('warning',"You already have an outstanding loan."); }
     } else { createToast('error',"Invalid loan amount."); }
 }
@@ -238,26 +247,54 @@ function payment() {
                 loanAmount.value = "";
                 saveState();
                 updateDisplay();
-            } else { alert("Not enough money to make the payment."); }
-        } else { alert("You don't have an outstanding loan."); }
-    } else { alert("Invalid payment amount."); }
+                createToast('success', 'payment successful');
+            } else { createToast('error',"Not enough money to make the payment."); }
+        } else { createToast('warning',"You don't have an outstanding loan."); }
+    } else { createToast('error',"Invalid payment amount."); }
 }
-
 function fbuy() {
+    // Get the fuel amount input element
     const fuelAmountInput = document.getElementById('Fuel-Amount');
+
+    // Parse the input value as an integer
     const fuelQuantity = parseInt(fuelAmountInput.value);
-    if (fuelQuantity > 0) {
+
+    // Check if the entered quantity is greater than 0 and less than 50
+    if (fuelQuantity > 0 && fuelQuantity < 51) {
+        // Calculate the total price based on the current city fuel prices
         let totalPrice = fuelQuantity * getCurrentCityPrices('Fuel');
+
+        // Check if the player has enough money to make the purchase
         if (gameState.money >= totalPrice) {
-            products['Fuel'].purchased += fuelQuantity;
+            // Update the game state with the purchased fuel
+            gameState.products['Fuel'].purchased += fuelQuantity;
             gameState.fuel += fuelQuantity;
             gameState.money -= totalPrice;
+
+            // Get the quantity of fuel bought
+            let fuelBought = gameState.products['Fuel'].quantity;
+
+            // Clear the fuel amount input
             fuelAmountInput.value = "";
+
+            // Save the updated game state
             saveState();
+
+            // Update the display to reflect the changes
             updateDisplay();
-        } else { alert(`You don't have enough money to buy Fuel!`); }
-    } else { alert("Enter a valid quantity to buy Fuel!"); }
+
+            // Display a success toast message
+            createToast('success', `Successfully bought ${fuelQuantity} liter of fuel.`);
+        } else {
+            // Display a warning toast if the player doesn't have enough money
+            createToast('warning', 'Please enter a quantity less than 50 to buy Fuel.');
+        }
+    } else {
+        // Display a warning toast for invalid quantity
+        createToast('warning', "Enter a valid quantity (less than 50) to buy Fuel!");
+    }
 }
+
 
 function payStaff() {
     const StaffAmountInput = document.getElementById('staff-Amount');
@@ -270,7 +307,7 @@ function payStaff() {
         StaffAmountInput.value = "";
         saveState();
         updateDisplay();
-    } else { alert(`You don't have enough money to pay Staff!`); }
+    } else { createToast('warning',`You don't have enough money to pay Staff!`); }
 }
 
 function payTaxes() {
@@ -284,7 +321,7 @@ function payTaxes() {
         TaxesAmountInput.value = "";
         saveState();
         updateDisplay();
-    } else { alert(`You don't have enough money to pay Taxes!`); }
+    } else { createToast('warning',`You don't have enough money to pay Taxes!`); }
 }
 
 function changeCity(cityName) {
@@ -295,20 +332,34 @@ function changeCity(cityName) {
     };
     const city = gameState.currentCity;
     const fuelCost = cities[cityName].fuelCost;
-    if (cityName != city) {
-    if (gameState.fuel >= fuelCost) {
-        gameState.fuel -= fuelCost;
-        gameState.currentCity = cityName;
-        gameState.currentCityImage = cities[cityName].imgSrc;
-        gameState.staffCost = Math.round(gameState.staffCost * cities[cityName].staffModifier);
-        gameState.taxesDue = Math.round(gameState.taxesDue * cities[cityName].taxesModifier);
-        document.getElementById('city-image').src = cities[cityName].imgSrc;
-        document.getElementById('city-name').innerText = cityName;
-        saveState();
-        updateDisplay();
-    } else { alert(`Not enough fuel to travel to ${cityName}.`); }
-} else { alert(`you are already in ${cityName}.`); }
+
+    if (cityName !=  city) {
+        if (gameState.fuel >= fuelCost) {
+            gameState.fuel -= fuelCost;
+            gameState.currentCity = cityName;
+            gameState.currentCityImage = cities[cityName].imgSrc;
+            gameState.staffCost = Math.round(gameState.staffCost * cities[cityName].staffModifier);
+            gameState.taxesDue = Math.round(gameState.taxesDue * cities[cityName].taxesModifier);
+            document.getElementById('city-image').src = cities[cityName].imgSrc;
+            document.getElementById('city-name').innerText = cityName;
+            saveState();
+            updateDisplay();
+            
+        } else {
+            createToast('error',`Not enough fuel to travel to ${cityName}.`);
+        }
+    } else {
+        createToast('warning',`You are already in ${cityName}.`);
+    }
 }
+function updateCityPrice(city, priceElementId) {
+    const priceElement = document.querySelector(`.${priceElementId}`);
+    if (priceElement) {
+        const price = getCurrentCityPrices(city);
+        priceElement.innerText = `$${price}`;
+    }
+}
+
 
 function showSectionById(sectionId) {
     const sections = document.querySelectorAll('#Products, #home, #travel');

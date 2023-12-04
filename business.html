@@ -3,17 +3,16 @@
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="mobile-web-app-capable" content="yes">
-      <meta name="apple-mobile-web-app-capable" content="yes">
       <title>Business Tycoon</title>
       <link rel="shortcut icon" href="BUSINESS/page/data/data/1/media/business.png" type="image/x-icon">
       <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!-- Font Awesome CDN link for icons -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-      <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    
       <link rel="stylesheet" href="style.css">
-      <link rel="manifest" target="_blank" href="/manifest.json">
+      <link rel="stylesheet" href="styles.css">
+      <link rel="manifest" href="manifest.json">
    </head>
    <body>
       <div class="loader">
@@ -24,9 +23,9 @@
             <circle class="pl__ring pl__ring--d" cx="155" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
          </svg>
       </div>
-      <ul class="notifications"></ul>
+    <ul class="notifications"></ul>
       <nav class="navbar">
-         <a href="#home" data-target="home" class="slide-in-bottom">
+         <a href="#home" data-target="home" class="slide-in-bottom navs">
          <i class="material-icons">home</i>
          Home
          </a>
@@ -58,9 +57,9 @@
       </section>
       <section id="home">
          <section class="main-section">
-            <div id="city-display">
+            <div id="city-display"  class="fade-in">
                <img id="city-image" src="BUSINESS/page/data/data/1/media/New Yerk.jpg
-                  " class="scale-in" alt="City Image">
+                  "  class="scale-in" alt="City Image">
                <h2 id="city-name">New york</h2>
             </div>
             <!-- Banking Section -->
@@ -202,11 +201,11 @@
       <section id="travel">
          <h2><i class="material-icons">flight</i> Choose your destination</h2>
          <div id="city-choices">
-            <button onclick="changeCity('New York')">New York <span class="New York"></span></button>
-            <button onclick="changeCity('Los Angeles')">Los Angeles <span class="los Angeles"></span></button>
-            <button onclick="changeCity('San Francisco')">San Francisco <span class="San Francisco"></span></button>
-         </div>
-         <div id="city-details"></div>
+            <button onclick="changeCity('New York');">New York <span class="new_york-price"></span></button>
+            <button onclick="changeCity('Los Angeles')">Los Angeles <span class="los_angeles-price"></span></button>
+            <button onclick="changeCity('San Francisco')">San Francisco <span class="san_francisco-price"></span></button>
+        </div>     
+        <div id="city-details"></div>
       </section>
       <footer id="footer">
          <p>&copy; 2023 Business Tycoon</p>
@@ -218,7 +217,7 @@
       <div id="desktopError">
          This game is playable on phones only.
       </div>
-      <script src="BUSINESS/page/data/data/1/scripts/script.js"></script>
+      <script src="script.js"></script>
       <script>
          if ('serviceWorker' in navigator) {
          navigator.serviceWorker.register('/sw.js')
@@ -270,3 +269,4 @@
       </script>
    </body>
 </html>
+
