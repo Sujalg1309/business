@@ -220,7 +220,7 @@
       <script src="BUSINESS/page/data/data/1/scripts/script.js"></script>
       <script>
          if ('serviceWorker' in navigator) {
-         navigator.serviceWorker.register('/sw.js')
+         navigator.serviceWorker.register('BUSINESS/page/data/data/1/scripts/app/sw.js')
          .then(registration => {
          console.log('Service Worker registered with scope:', registration.scope);
          })
