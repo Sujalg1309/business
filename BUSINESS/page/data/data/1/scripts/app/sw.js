@@ -9,8 +9,7 @@ const urlsToCache = [
   '/BUSINESS/page/data/data/1/media/sf.png',
   '/BUSINESS/page/data/data/1/media/New York.jpg',
   '/BUSINESS/page/data/data/1/media/ls.png',
-  'BUSINESS/page/data/data/1/scripts/script.js',
-  '/offline.html', // Add offline.html to the list of cached URLs
+  'BUSINESS/page/data/data/1/scripts/script.js'
 ];
 
 self.addEventListener('install', (event) => {
