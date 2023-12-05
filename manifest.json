@@ -1,8 +1,8 @@
 {
   "name": "business game",
   "short_name": "business",
-  "start_url": ".",
-    "scope": ".",
+  "start_url": "business.html",
+    "scope": "BUSINESS/page/data/data/1/scripts/app/sw.js",
     "related_applications": [
         {
             "platform": "webapp",
