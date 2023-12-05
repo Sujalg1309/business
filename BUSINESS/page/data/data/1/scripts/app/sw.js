@@ -10,7 +10,7 @@ const urlsToCache = [
   '/BUSINESS/page/data/data/1/media/New York.jpg',
   '/BUSINESS/page/data/data/1/media/ls.png',
   'BUSINESS/page/data/data/1/scripts/script.js'
-];
+]; 
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
