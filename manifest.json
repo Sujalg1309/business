@@ -1,14 +1,14 @@
 {
   "name": "business game",
   "short_name": "business",
-  "start_url": "business.html",
-    "scope": "BUSINESS/page/data/data/1/scripts/app/sw.js",
-    "related_applications": [
-        {
-            "platform": "webapp",
-            "url": "https://sujalg1309.github.io/business/manifest.json"
-        }
-    ],
+  "start_url": "/business.html",
+  "scope": "/",
+  "related_applications": [
+    {
+      "platform": "webapp",
+      "url": "https://sujalg1309.github.io/business/manifest.json"
+    }
+  ],
   "display": "standalone",
   "background_color": "#0f0e17",
   "theme_color": "#232946",
@@ -19,5 +19,6 @@
       "type": "image/png"
     }
   ],
-  "offline_access": true
+  "offline_access": true,
+  "orientation": "portrait"
 }

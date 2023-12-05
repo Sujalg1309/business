@@ -9,8 +9,9 @@ const urlsToCache = [
   '/BUSINESS/page/data/data/1/media/sf.png',
   '/BUSINESS/page/data/data/1/media/New York.jpg',
   '/BUSINESS/page/data/data/1/media/ls.png',
-  'BUSINESS/page/data/data/1/scripts/script.js'
-]; 
+  'BUSINESS/page/data/data/1/scripts/script.js',
+  '/offline.html', // Add offline.html to the list of cached URLs
+];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -35,7 +36,8 @@ self.addEventListener('fetch', (event) => {
           .then((response) => {
             // Check if we received a valid response
             if (!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
+              // Serve the offline page in case of errors or when offline
+              return caches.match('business.html');
             }
 
             // Clone the response and cache it
@@ -46,6 +48,10 @@ self.addEventListener('fetch', (event) => {
               });
 
             return response;
+          })
+          .catch(() => {
+            // Network request failed, serve the offline page
+            return caches.match('business.html');
           });
       })
   );
