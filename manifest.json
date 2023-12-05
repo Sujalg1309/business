@@ -2,7 +2,7 @@
   "name": "business game",
   "short_name": "business",
   "start_url": "/business.html",
-  "scope": ".",
+  "scope": "/",
   "related_applications": [
     {
       "platform": "webapp",
