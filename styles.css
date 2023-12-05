@@ -216,23 +216,27 @@ h1 {
 #city-choices button:hover {
     background-color: var(--primary-variant);
 }
-/* Webkit browsers */
-::-webkit-scrollbar {
-    width: 10px;
+/* Handle for all browsers */
+body::-webkit-scrollbar {
+  width: 10px;
 }
- 
-::-webkit-scrollbar-track {
-    background-color: var(--background);
+
+/* Track for all browsers */
+body::-webkit-scrollbar-track {
+  background-color: var(--background);
 }
- 
-::-webkit-scrollbar-thumb {
-    background-color: var(--primary-variant);
-    border-radius: 5px;
+
+/* Handle for all browsers */
+body::-webkit-scrollbar-thumb {
+  background-color: var(--primary-variant);
+  border-radius: 5px;
 }
- 
-::-webkit-scrollbar-thumb:hover {
-    background-color: var(--primary);
+
+/* Handle on hover for all browsers */
+body::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary);
 }
+
 
 .instagram-link {
     display: flex;
