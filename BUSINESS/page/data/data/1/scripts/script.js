@@ -166,7 +166,7 @@ function buy(product) {
 
 function sell(product) {
     if (gameState.products[product] && gameState.products[product].quantity > 0) {
-    if (gameState.products[product] && gameState.products[product].purchased > 0) {
+    if (gameState.products[product] && gameState.products[product].purchased >= 0) {
         let sellingPrice = getCurrentCityPrices(product) * gameState.products[product].quantity;
         gameState.products[product].purchased -= gameState.products[product].quantity;
         gameState.money += sellingPrice;
