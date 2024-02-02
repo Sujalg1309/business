@@ -254,7 +254,12 @@
            }
          }
          </script>
-         
+          <script>
+    // Disable page reload
+    window.addEventListener('beforeunload', function (e) {
+      e.preventDefault();
+    });
+  </script>
    </body>
 </html>
 
