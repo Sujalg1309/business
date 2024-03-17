@@ -337,15 +337,11 @@ function changeCity(cityName) {
         "San Francisco": { fuelCost: 25, Staff: 200, Taxes: 300, imgSrc: "BUSINESS/page/data/data/1/media/sf.jpg" }
     };
     const city = gameState.currentCity;
-    const fuelCost = cities[cityName].fuelCost;
-    const staff = cities[cityName].Staff;
-    const taxes = cities[cityName].Taxes;
+    const fuelCost = cities[cityName].fuelCost;
 
     if (cityName !=  city) {
         if (gameState.fuel >= fuelCost) {
             gameState.fuel -= fuelCost;
-            gameState.staffCost = Staff;
-            gameState.taxesDue = Taxes;
             gameState.currentCity = cityName;
             gameState.currentCityImage = cities[cityName].imgSrc;
             document.getElementById('city-image').src = cities[cityName].imgSrc;
