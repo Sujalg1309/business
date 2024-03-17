@@ -302,9 +302,9 @@ function payStaff() {
     const StaffAmountInput = document.getElementById('staff-Amount');
     const StaffQuantity = parseInt(StaffAmountInput.value);
     let totalPrice = StaffQuantity * getCurrentCityPrices('Staff');
-    if (StaffQuantity > 0 && StaffQuantity < totalPrice){
+    if (StaffQuantity > 0 && StaffQuantity < totalPrice) {
         if (gameState.money >= totalPrice) {
-            gameState.products['Staff'].quantity -= StaffQuantity;
+            gameState.products['Staff'].purchased -= StaffQuantity; // Corrected this line
             gameState.staffCost -= totalPrice;
             gameState.money -= totalPrice;
             StaffAmountInput.value = "";
@@ -318,9 +318,9 @@ function payTaxes() {
     const TaxesAmountInput = document.getElementById('taxes-Amount');
     const TaxesQuantity = parseInt(TaxesAmountInput.value);
     let totalPrice = TaxesQuantity * getCurrentCityPrices('Taxes');
-    if (TaxesQuantity > 0 && TaxesQuantity < totalPrice){
+    if (TaxesQuantity > 0 && TaxesQuantity < totalPrice) {
         if (gameState.money >= totalPrice) {
-            gameState.products['Taxes'].quantity -= TaxesQuantity;
+            gameState.products['Taxes'].purchased -= TaxesQuantity; // Corrected this line
             gameState.taxesDue -= totalPrice;
             gameState.money -= totalPrice;
             TaxesAmountInput.value = "";
