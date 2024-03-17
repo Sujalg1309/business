@@ -302,28 +302,32 @@ function payStaff() {
     const StaffAmountInput = document.getElementById('staff-Amount');
     const StaffQuantity = parseInt(StaffAmountInput.value);
     let totalPrice = StaffQuantity * getCurrentCityPrices('Staff');
-    if (gameState.money >= totalPrice) {
-        products['Staff'] -= StaffQuantity;
-        gameState.staffCost -= StaffQuantity;
-        gameState.money -= totalPrice;
-        StaffAmountInput.value = "";
-        saveState();
-        updateDisplay();
-    } else { createToast('warning',`You don't have enough money to pay Staff!`); }
+    if (StaffQuantity > 0 && StaffQuantity < totalPrice){
+        if (gameState.money >= totalPrice) {
+            products['Staff'] -= StaffQuantity;
+            gameState.staffCost -= StaffQuantity;
+            gameState.money -= totalPrice;
+            StaffAmountInput.value = "";
+            saveState();
+            updateDisplay();
+        } else { createToast('warning',`You don't have enough money to pay Staff!`); }
+    } else { createToast('warning',`Enter a valid quantity to pay Staff`); }
 }
 
 function payTaxes() {
     const TaxesAmountInput = document.getElementById('taxes-Amount');
     const TaxesQuantity = parseInt(TaxesAmountInput.value);
     let totalPrice = TaxesQuantity * getCurrentCityPrices('Taxes');
-    if (gameState.money >= totalPrice) {
-        products['Taxes'] -= StaffQuantity;
-        gameState.taxesDue -= TaxesQuantity;
-        gameState.money -= totalPrice;
-        TaxesAmountInput.value = "";
-        saveState();
-        updateDisplay();
-    } else { createToast('warning',`You don't have enough money to pay Taxes!`); }
+    if (TaxesQuantity > 0 && TaxesQuantity < totalPrice){
+        if (gameState.money >= totalPrice) {
+            products['Taxes'] -= StaffQuantity;
+            gameState.taxesDue -= TaxesQuantity;
+            gameState.money -= totalPrice;
+            TaxesAmountInput.value = "";
+            saveState();
+            updateDisplay();
+        } else { createToast('warning',`You don't have enough money to pay Taxes!`); }
+    } else { createToast('warning',`Enter a valid quantity to pay Staff`); }
 }
 
 function changeCity(cityName) {
