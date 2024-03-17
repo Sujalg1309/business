@@ -67,6 +67,8 @@ let gameState = {
         bread: { quantity: 0, purchased: 0 },
         milk: { quantity: 0, purchased: 0 },
         Fuel: { quantity: 0, purchased: 0 },
+        Staff: { quantity: 0, purchased: 0 },
+        Taxes: { quantity: 0, purchased: 0 }
     }
 };
 
@@ -77,9 +79,9 @@ const cityPrices = {
 };
 
 const cityprices = {
-    "New York": { fuelCost: 10 },
-    "los Angeles": { fuelCost: 40 },
-    "San Francisco": { fuelCost: 25}
+    "New York": { fuelCost: 10, Staff: 100, Taxes: 200 },
+    "los Angeles": { fuelCost: 40, Staff: 300, Taxes: 400 },
+    "San Francisco": { fuelCost: 25, Staff: 200, Taxes: 300 }
 }
 
 function saveState() { localStorage.setItem('gameState', JSON.stringify(gameState)); }
@@ -301,7 +303,7 @@ function payStaff() {
     const StaffQuantity = parseInt(StaffAmountInput.value);
     let totalPrice = StaffQuantity * getCurrentCityPrices('Staff');
     if (gameState.money >= totalPrice) {
-        products['Staff'].purchased += StaffQuantity;
+        products['Staff'] -= StaffQuantity;
         gameState.staffCost -= StaffQuantity;
         gameState.money -= totalPrice;
         StaffAmountInput.value = "";
@@ -315,7 +317,7 @@ function payTaxes() {
     const TaxesQuantity = parseInt(TaxesAmountInput.value);
     let totalPrice = TaxesQuantity * getCurrentCityPrices('Taxes');
     if (gameState.money >= totalPrice) {
-        products['Taxes'].purchased += StaffQuantity;
+        products['Taxes'] -= StaffQuantity;
         gameState.taxesDue -= TaxesQuantity;
         gameState.money -= totalPrice;
         TaxesAmountInput.value = "";
@@ -326,20 +328,22 @@ function payTaxes() {
 
 function changeCity(cityName) {
     const cities = {
-        "New York": { fuelCost: 10, staffModifier: 1.5, taxesModifier: 1.2, imgSrc: "BUSINESS/page/data/data/1/media/New Yerk.jpg" },
-        "Los Angeles": { fuelCost: 40, staffModifier: 1.8, taxesModifier: 1.3, imgSrc: "BUSINESS/page/data/data/1/media/ls.jpg" },
-        "San Francisco": { fuelCost: 25, staffModifier: 1.2, taxesModifier: 1.1, imgSrc: "BUSINESS/page/data/data/1/media/sf.jpg" }
+        "New York": { fuelCost: 10, Staff: 100, Taxes: 200, imgSrc: "BUSINESS/page/data/data/1/media/New Yerk.jpg" },
+        "Los Angeles": { fuelCost: 40, Staff: 300, Taxes: 400, imgSrc: "BUSINESS/page/data/data/1/media/ls.jpg" },
+        "San Francisco": { fuelCost: 25, Staff: 200, Taxes: 300, imgSrc: "BUSINESS/page/data/data/1/media/sf.jpg" }
     };
     const city = gameState.currentCity;
     const fuelCost = cities[cityName].fuelCost;
+    const staff = cities[cityName].Staff;
+    const taxes = cities[cityName].Taxes;
 
     if (cityName !=  city) {
         if (gameState.fuel >= fuelCost) {
             gameState.fuel -= fuelCost;
+            gameState.staffCost = Staff;
+            gameState.taxesDue = Taxes;
             gameState.currentCity = cityName;
             gameState.currentCityImage = cities[cityName].imgSrc;
-            gameState.staffCost = Math.round(gameState.staffCost * cities[cityName].staffModifier);
-            gameState.taxesDue = Math.round(gameState.taxesDue * cities[cityName].taxesModifier);
             document.getElementById('city-image').src = cities[cityName].imgSrc;
             document.getElementById('city-name').innerText = cityName;
             saveState();
