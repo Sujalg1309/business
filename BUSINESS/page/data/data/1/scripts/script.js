@@ -304,8 +304,8 @@ function payStaff() {
     let totalPrice = StaffQuantity * getCurrentCityPrices('Staff');
     if (StaffQuantity > 0 && StaffQuantity < totalPrice){
         if (gameState.money >= totalPrice) {
-            products['Staff'] -= StaffQuantity;
-            gameState.staffCost -= StaffQuantity;
+            gameState.products['Staff'].quantity -= StaffQuantity;
+            gameState.staffCost -= totalPrice;
             gameState.money -= totalPrice;
             StaffAmountInput.value = "";
             saveState();
@@ -320,14 +320,14 @@ function payTaxes() {
     let totalPrice = TaxesQuantity * getCurrentCityPrices('Taxes');
     if (TaxesQuantity > 0 && TaxesQuantity < totalPrice){
         if (gameState.money >= totalPrice) {
-            products['Taxes'] -= StaffQuantity;
-            gameState.taxesDue -= TaxesQuantity;
+            gameState.products['Taxes'].quantity -= TaxesQuantity;
+            gameState.taxesDue -= totalPrice;
             gameState.money -= totalPrice;
             TaxesAmountInput.value = "";
             saveState();
             updateDisplay();
         } else { createToast('warning',`You don't have enough money to pay Taxes!`); }
-    } else { createToast('warning',`Enter a valid quantity to pay Staff`); }
+    } else { createToast('warning',`Enter a valid quantity to pay Taxes`); }
 }
 
 function changeCity(cityName) {
