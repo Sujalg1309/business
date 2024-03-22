@@ -1,14 +1,9 @@
 {
-  "name": "Business Tycoon",
+  "name": "business game",
   "short_name": "business",
-  "start_url": "/business/business.html",
-  "scope": "/",
-  "related_applications": [
-    {
-      "platform": "webapp",
-      "url": "https://sujalg1309.github.io/business/manifest.json"
-    }
-  ],
+  "start_url": "business.html",
+  "offline_enabled": true,
+  
   "display": "standalone",
   "background_color": "#0f0e17",
   "theme_color": "#232946",
@@ -19,13 +14,10 @@
       "type": "image/png"
     }
   ],
-  "offline_access": true,
-  "orientation": "portrait",
   "cache": [
     "styles.css",
     "all.min.css",
     "script.js",
-    "style.css",
     "business.html",
     "BUSINESS/page/data/data/1/media/business.png",
     "BUSINESS/page/data/data/1/media/ls.jpg",
