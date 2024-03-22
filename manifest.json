@@ -16,7 +16,7 @@
   ],
   "cache": [
     "styles.css",
-    "all.min.css",
+    "style.css",
     "script.js",
     "business.html",
     "BUSINESS/page/data/data/1/media/business.png",
@@ -26,7 +26,6 @@
     "icon.png",
     "https://fonts.googleapis.com/icon?family=Material+Icons",
     "https://fonts.googleapis.com/css2?family=Ubuntu&display=swap",
-    "all.min.css"
   ],
   "fallback": []
 }
