@@ -13,11 +13,11 @@
       "type": "image/png"
     }
   ],
-  "cache": [
+  "files": [
+    "business.html",
     "styles.css",
     "style.css",
     "script.js",
-    "business.html",
     "BUSINESS/page/data/data/1/media/business.png",
     "BUSINESS/page/data/data/1/media/ls.jpg",
     "BUSINESS/page/data/data/1/media/New Yerk.jpg",
@@ -25,6 +25,6 @@
     "icon.png",
     "https://fonts.googleapis.com/icon?family=Material+Icons",
     "https://fonts.googleapis.com/css2?family=Ubuntu&display=swap"
-  ],
+],
   "fallback": []
 }
